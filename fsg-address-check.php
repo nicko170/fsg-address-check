@@ -7,7 +7,7 @@
  * Author URI:      https://theitdept.au
  * Text Domain:     fsg-address-check
  * Domain Path:     /languages
- * Version:         0.0.1
+ * Version:         0.0.2
  *
  * @package         Fsg_Address_Check
  */
@@ -18,6 +18,6 @@ use FSGAddressCheck\NBNPlans;
 
 require 'vendor/autoload.php';
 
-Settings::setup();
-NBNPlans::setup();
-AddressSearch::setup();
+new Settings();
+new NBNPlans();
+new AddressSearch();
