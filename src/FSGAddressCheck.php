@@ -11,8 +11,10 @@ class FSGAddressCheck extends Plugin
 {
 
 	protected $services = [
-		Settings::class,
+		NBNLog::class,
 		NBNPlans::class,
+
+		Settings::class,
 		AddressSearch::class
 	];
 

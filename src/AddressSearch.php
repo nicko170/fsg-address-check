@@ -46,8 +46,6 @@ class AddressSearch extends Service
 
 		$availableProducts = collect($response->applicableProducts)->pluck('product')->toArray();
 
-		include 'templates/address-search-tech-results.php';
-
 		// find posts of type nbn-plans that have a meta key of fsg_product_id and a value of one of the available products
 		$posts = new WP_Query([
 			'post_type' => 'nbn-plans',
@@ -60,6 +58,9 @@ class AddressSearch extends Service
 			],
 		]);
 
+		ob_start();
+		include 'templates/address-search-tech-results.php';
+
 		if (!$posts->have_posts()) {
 			get_template_part('content', 'none');
 		} else {
@@ -68,8 +69,40 @@ class AddressSearch extends Service
 				echo get_the_content();
 			}
 		}
+		$content = ob_get_clean();
+
+		// Save a log of the search, then print the results.
+		wp_insert_post([
+			'post_type' => 'nbn-log',
+			'post_title' => $locationId,
+			'post_content' => $content,
+			'post_status' => 'publish',
+			'meta_input' => [
+				'location_id' => $locationId,
+				'ip_address' => $this->getIP()
+			],
+
+		]);
+
+		// Print the results to the page.
+		echo $content;
 
 		wp_die();
+	}
+
+	public function getIP(): string
+	{
+		if (isset($_SERVER['HTTP_CF_CONNECTING_IP'])) {
+			return $_SERVER['HTTP_CF_CONNECTING_IP'];
+		} else if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+			return $_SERVER['HTTP_CLIENT_IP'];
+		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			return $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} else if (!empty($_SERVER['REMOTE_ADDR'])) {
+			return $_SERVER['REMOTE_ADDR'];
+		}
+
+		return 'UNKNOWN';
 	}
 
 }
