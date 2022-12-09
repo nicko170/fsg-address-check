@@ -1,0 +1,16 @@
+{
+  "require": {
+    "aws/aws-sdk-php": "^3.252",
+    "guzzlehttp/guzzle": "^7.5",
+    "doctrine/annotations": "^1.10",
+    "psr/simple-cache": "^1.0",
+    "symfony/http-client": "^6.2",
+    "illuminate/collections": "^9.43",
+    "spatie/data-transfer-object": "^3.9"
+  },
+  "autoload": {
+    "psr-4": {
+      "FSGAddressCheck\\": "src/"
+    }
+  }
+}
