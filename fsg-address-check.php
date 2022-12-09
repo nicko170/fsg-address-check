@@ -7,17 +7,29 @@
  * Author URI:      https://theitdept.au
  * Text Domain:     fsg-address-check
  * Domain Path:     /languages
- * Version:         0.0.2
+ * Version:         0.0.3
  *
  * @package         Fsg_Address_Check
  */
 
-use FSGAddressCheck\AddressSearch;
-use FSGAddressCheck\Settings;
-use FSGAddressCheck\NBNPlans;
+use Auryn\Injector;
+use FSGAddressCheck\FSGAddressCheck;
 
-require 'vendor/autoload.php';
+$plugin_path = plugin_dir_path(__FILE__);
+$autoload = $plugin_path . 'vendor/autoload.php';
 
-new Settings();
-new NBNPlans();
-new AddressSearch();
+if (is_readable($autoload)) {
+	require_once $autoload;
+}
+
+try {
+	add_action('plugins_loaded', [new FSGAddressCheck($plugin_path, new Injector()), 'run']);
+} catch (Throwable $e) {
+	// There was an error loading the plugin, so we'll just log it and move on.
+	add_action(
+		'admin_init',
+		function () {
+			deactivate_plugins(__FILE__);
+		}
+	);
+}

@@ -2,9 +2,11 @@
 
 namespace FSGAddressCheck;
 
-class NBNPlans
+use WebDevStudios\OopsWP\Structure\Service;
+
+class NBNPlans extends Service
 {
-	public function __construct()
+	public function register_hooks()
 	{
 		add_action('init', [$this, 'register_post_type']);
 		add_filter('manage_nbn-plans_posts_columns', [$this, 'manage_nbn_plans_posts_columns']);

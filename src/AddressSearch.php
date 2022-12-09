@@ -3,11 +3,12 @@
 namespace FSGAddressCheck;
 
 use JetBrains\PhpStorm\NoReturn;
+use WebDevStudios\OopsWP\Structure\Service;
 use WP_Query;
 
-class AddressSearch
+class AddressSearch extends Service
 {
-	public function __construct()
+	public function register_hooks()
 	{
 		add_shortcode('fsg_address_check', [$this, 'fsg_address_check']);
 		add_action('wp_ajax_nbn_address_search', [$this, 'nbn_address_search']);
@@ -22,7 +23,6 @@ class AddressSearch
 		return ob_get_clean();
 	}
 
-	#[NoReturn]
 	public function nbn_address_search(): void
 	{
 		$address = $_REQUEST['address'];
@@ -40,11 +40,13 @@ class AddressSearch
 	{
 		$locationId = $_REQUEST['location_id'];
 		$config = get_option('fsg_nbn_api_options');
-		$api = FSGApiClient::make($config['username'], $config['password'], $config['client_id']);
 
+		$api = FSGApiClient::make($config['username'], $config['password'], $config['client_id']);
 		$response = $api->siteQualification($locationId);
 
-		$avaliableProducts = collect($response->applicableProducts)->pluck('product')->toArray();
+		$availableProducts = collect($response->applicableProducts)->pluck('product')->toArray();
+
+		include 'templates/address-search-tech-results.php';
 
 		// find posts of type nbn-plans that have a meta key of fsg_product_id and a value of one of the available products
 		$posts = new WP_Query([
@@ -52,7 +54,7 @@ class AddressSearch
 			'meta_query' => [
 				[
 					'key' => 'fsg_product_id',
-					'value' => $avaliableProducts,
+					'value' => $availableProducts,
 					'compare' => 'IN',
 				],
 			],

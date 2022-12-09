@@ -2,9 +2,11 @@
 
 namespace FSGAddressCheck;
 
-class Settings
+use WebDevStudios\OopsWP\Structure\Service;
+
+class Settings extends Service
 {
-	public function __construct()
+	public function register_hooks()
 	{
 		add_action('admin_menu', [$this, 'admin_menu']);
 		add_action('admin_init', [$this, 'admin_init']);
@@ -116,6 +118,7 @@ class Settings
 		$type = $password ? 'password' : 'text';
 		echo "<input id='fsg_nbn_api_setting_$name' name='fsg_nbn_api_options[$name]' size='40' type='$type' value='$value' />";
 	}
+
 }
 
 

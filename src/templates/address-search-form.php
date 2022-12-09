@@ -14,6 +14,11 @@
 </div>
 
 <script>
+	window.addressCheckCallback = function (apiResponse) {
+		// This is going to be used to show the techs available for the address selected
+		console.log(apiResponse);
+	}
+
 	function debounce(func, timeout = 300) {
 		let timer;
 		return (...args) => {

@@ -10,7 +10,9 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
 
 /**
- * A fluent USER_PASSWORD_AUTH flow for AWS Cognito, because Fuck Amazon.
+ * A somewhat usable USER_PASSWORD_AUTH flow for AWS Cognito, because Fuck Amazon.
+ * The class that comes out of the box is a fucking mess and doesn't work. I don't understand why Amazon have
+ * to put their own spin on everything, but they do. OAUTH IS PERFECTLY FINE, WHY DO YOU NEED TO CHANGE IT?
  */
 class AwsCognitoAuth
 {

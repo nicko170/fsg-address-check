@@ -86,7 +86,6 @@ class FSGApiClient
 	public function siteQualification(string $locationId): SiteQualificationResponse
 	{
 		$response = $this->client->get('https://api.fsgutils.com/beta/manage/siteQualifications/' . $locationId);
-
 		return new SiteQualificationResponse(json_decode($response->getBody()->getContents(), true)['result']);
 	}
 }

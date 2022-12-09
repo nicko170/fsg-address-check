@@ -15,14 +15,20 @@ class ComposerStaticInit847686a836e4ba086b385919960add3c
         'b067bc7112e384b61c701452d53a14a8' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/JmesPath.php',
         '8a9dc1de0ca7e01f3e08231539562f61' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/functions.php',
         '60799491728b879e74601d83e38b2cad' => __DIR__ . '/..' . '/illuminate/collections/helpers.php',
+        '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
     );
 
     public static $prefixLengthsPsr4 = array (
+        'W' => 
+        array (
+            'WebDevStudios\\OopsWP\\' => 21,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Contracts\\Service\\' => 26,
             'Symfony\\Contracts\\HttpClient\\' => 29,
+            'Symfony\\Component\\VarDumper\\' => 28,
             'Symfony\\Component\\HttpClient\\' => 29,
             'Spatie\\DataTransferObject\\' => 26,
         ),
@@ -62,10 +68,15 @@ class ComposerStaticInit847686a836e4ba086b385919960add3c
         'A' => 
         array (
             'Aws\\' => 4,
+            'Auryn\\' => 6,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'WebDevStudios\\OopsWP\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/webdevstudios/oops-wp/src',
+        ),
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
@@ -77,6 +88,10 @@ class ComposerStaticInit847686a836e4ba086b385919960add3c
         'Symfony\\Contracts\\HttpClient\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/http-client-contracts',
+        ),
+        'Symfony\\Component\\VarDumper\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/var-dumper',
         ),
         'Symfony\\Component\\HttpClient\\' => 
         array (
@@ -96,8 +111,8 @@ class ComposerStaticInit847686a836e4ba086b385919960add3c
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -117,9 +132,9 @@ class ComposerStaticInit847686a836e4ba086b385919960add3c
         ),
         'Illuminate\\Support\\' => 
         array (
-            0 => __DIR__ . '/..' . '/illuminate/macroable',
+            0 => __DIR__ . '/..' . '/illuminate/collections',
             1 => __DIR__ . '/..' . '/illuminate/conditionable',
-            2 => __DIR__ . '/..' . '/illuminate/collections',
+            2 => __DIR__ . '/..' . '/illuminate/macroable',
         ),
         'Illuminate\\Contracts\\' => 
         array (
@@ -152,6 +167,10 @@ class ComposerStaticInit847686a836e4ba086b385919960add3c
         'Aws\\' => 
         array (
             0 => __DIR__ . '/..' . '/aws/aws-sdk-php/src',
+        ),
+        'Auryn\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/rdlowrey/auryn/lib',
         ),
     );
 
