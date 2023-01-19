@@ -75,7 +75,6 @@ class Settings extends Service
 		// Loop through the plans and insert or update the post of type nbn_plans.
 		echo "Importing plans...\n";
 		foreach ($products->products as $product) {
-			echo "Importing {$product->name}...\n";
 
 			// We are going to grab the post ID from the postmeta table, based on the product ID.
 			$post_id = $wpdb->get_var($wpdb->prepare("SELECT post_id FROM $wpdb->postmeta WHERE meta_key = 'fsg_product_id' AND meta_value = %s", $product->product));
@@ -96,15 +95,15 @@ class Settings extends Service
 			];
 
 			if ($post_id) {
-				// We trigger an update
+				echo "Updating $post_id ($product->name)  ... ";
 				$post['ID'] = $post_id;
-			} else {
-				// We remove the title, as we don't want to update the title.
 				unset($post['post_title']);
 				unset($post['post_status']);
+			} else {
+				echo "Inserting $product->name ... ";
 			}
 
-			wp_insert_post($post);
+			echo wp_insert_post($post) . "<br>" . PHP_EOL;
 		}
 
 		echo 'Done';
