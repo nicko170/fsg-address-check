@@ -10,7 +10,6 @@ class NBNPlans extends Service
 	{
 		add_action('init', [$this, 'register_post_type']);
 		add_filter('manage_nbn-plans_posts_columns', [$this, 'manage_nbn_plans_posts_columns']);
-		add_action('manage_posts_custom_column', [$this, 'manage_posts_custom_column'], 10, 2);
 		add_filter('post_updated_messages', [$this, 'post_updated_messages']);
 		add_filter('bulk_post_updated_messages', [$this, 'bulk_post_updated_messages'], 10, 2);
 	}
@@ -75,11 +74,6 @@ class NBNPlans extends Service
 			'fsg_product_up' => 'Mbps Up',
 			'date' => 'Date',
 		];
-	}
-
-	public function manage_posts_custom_column($column_id, $post_id): void
-	{
-		echo get_post_meta($post_id, $column_id, true);
 	}
 
 	public function post_updated_messages($messages): array

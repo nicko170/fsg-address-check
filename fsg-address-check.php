@@ -7,7 +7,7 @@
  * Author URI:      https://theitdept.au
  * Text Domain:     fsg-address-check
  * Domain Path:     /languages
- * Version:         0.1.0
+ * Version:         0.1.1
  *
  * @package         Fsg_Address_Check
  */

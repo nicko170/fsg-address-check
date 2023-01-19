@@ -78,7 +78,7 @@ class Settings extends Service
 
 			// We are going to grab the post ID from the postmeta table, based on the product ID.
 			$post_id = $wpdb->get_var($wpdb->prepare("SELECT post_id FROM $wpdb->postmeta WHERE meta_key = 'fsg_product_id' AND meta_value = %s", $product->product));
-			//echo $product->name . ' - ' . $product->product . ' - ' . $product->type . ' - ' . $product->rate . ' - ' . $product->up . ' - ' . $product->down . ' - ' . $post_id . PHP_EOL;
+			echo $product->name . ' - ' . $product->product . ' - ' . $product->type . ' - ' . $product->rate . ' - ' . $product->up . ' - ' . $product->down . ' - ' . $post_id . "<br>" . PHP_EOL;
 			$post = [
 				'ID' => $post_id,
 				'post_title' => $product->name,
